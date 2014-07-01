@@ -9,6 +9,8 @@ public class Movie {
 	String video_release_date;
 	String url;
 	int[] genre;
+	private int rating;
+	
 	public int getMovie_id() {
 		return movie_id;
 	}

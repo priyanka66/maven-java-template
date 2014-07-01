@@ -96,7 +96,11 @@ public class MovieManager {
 				ArrayList<ratings> rateMap = rate.getRate(rate.getClass().getClassLoader().getResourceAsStream("ratings.data"));
 				MovieManager usr = new MovieManager();
 				Map<String, User> usrMap = usr.getUsr(usr.getClass().getClassLoader().getResourceAsStream("user.data"));
+				
+			
 			}
+			
+			
 		 		
 		
 }
