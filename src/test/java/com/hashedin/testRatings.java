@@ -2,8 +2,6 @@ package com.hashedin;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Map;
-
 import junit.framework.TestCase;
 
 public class testRatings extends TestCase{
