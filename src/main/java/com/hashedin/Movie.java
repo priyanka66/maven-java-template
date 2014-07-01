@@ -47,4 +47,6 @@ public class Movie {
 				+ Arrays.toString(genre) + "]";
 	}
 	
+	
+	
 }
