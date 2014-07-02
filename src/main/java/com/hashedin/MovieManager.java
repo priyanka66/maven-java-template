@@ -124,7 +124,9 @@ public class MovieManager {
 				// System.out.println(movieMap);
 				
 				 MovieFreak Freak = new MovieFreak(movieMap, rateMap, usrMap);				 		
-		
+		        // System.out.println("Most Watched movie is :");
+		         Freak.MostWatchedMovie(movieMap,rateMap,usrMap);
+		         Freak.mostActiveuser(movieMap, rateMap, usrMap);
 }
 
 			
