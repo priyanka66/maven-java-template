@@ -2,9 +2,9 @@ package com.hashedin;
 
 public class ratings {
 	int userId;
-	int itemId;
+	 int itemId;
 	int ratings;
-	int timestap;
+	int timestamp;
 	
 	
 	public int getUserId() {
@@ -25,16 +25,16 @@ public class ratings {
 	public void setRatings(int ratings) {
 		this.ratings = ratings;
 	}
-	public int getTimestap() {
-		return timestap;
+	public int getTimestamp() {
+		return timestamp;
 	}
-	public void setTimestap(int timestap) {
-		this.timestap = timestap;
+	public void setTimestamp(int Timestamp) {
+		this.timestamp = Timestamp;
 	}
 	@Override
 	public String toString() {
 		return "ratings [userId=" + userId + ", itemId=" + itemId
-				+ ", ratings=" + ratings + ", timestap=" + timestap + "]";
+				+ ", ratings=" + ratings + ", Timestamp=" + timestamp + "]";
 	}
 	
 	

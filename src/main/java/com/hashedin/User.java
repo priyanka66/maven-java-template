@@ -5,7 +5,17 @@ public class User {
 	int age;
 	String gender;
 	String occupation;
-	String zip;
+	String zip; ;
+	int count;
+	
+	public int getCount() {
+		return count;
+	}
+	public void setCount(int count) {
+		this.count += count;
+	}
+	
+	
 	public int getUserID() {
 		return userID;
 	}
@@ -40,7 +50,8 @@ public class User {
 	@Override
 	public String toString() {
 		return "User [userID=" + userID + ", age=" + age + ", gender=" + gender
-				+ ", occupation=" + occupation + ", zip=" + zip + "]";
+				+ ", occupation=" + occupation + ", zip=" + zip + ", count="
+				+ count + "]";
 	}
 	
 	

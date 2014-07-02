@@ -4,27 +4,33 @@ import java.util.List;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.StringTokenizer;
 
 import org.apache.commons.io.IOUtils;
 
+import java.util.*;
+
 //import org.omg.CORBA.portable.InputStream;
 
 public class MovieManager {
 				
-	 			public Map<String, Movie> getMovies(InputStream movieStream)
+	 			public Map<Integer, Movie> getMovies(InputStream movieStream)
 					throws IOException {
 
-				Map<String, Movie> movieMap = new HashMap<>();
+				Map<Integer, Movie> movieMap = new HashMap<>();
 				List <String> lines = IOUtils.readLines(movieStream);
 
 				for (String line : lines) {
 					Movie m = parseMovie(line);
-					movieMap.put(Integer.toString(m.getMovie_id()), m);
-					System.out.println(m);
+					movieMap.put(m.getMovie_id(), m);
+				//	System.out.println(m);
 				}
+				
+			//	System.out.println(movieMap);
+				
 				return movieMap;
 	}					
 
@@ -35,6 +41,7 @@ public class MovieManager {
 					m.setMovie_name(token.nextToken());
 					m.setRelease_date(token.nextToken());
 					m.setUrl(token.nextToken());
+				//	m.setGenre(Integer.parseInt(token.nextToken()));
 					return (m);
 				}
 	 			
@@ -48,9 +55,12 @@ public class MovieManager {
 				for (String line : lines) {
 					 ratings rate = parseRate(line);
 					rateMap.add(rate);
-					System.out.println(rate);
+					//System.out.println(rate);
 				}
+				
+				//System.out.println(rateMap.get(1));
 				return rateMap;
+				
 	}					
 
 	 			ratings parseRate(String movieRecord) {
@@ -59,20 +69,20 @@ public class MovieManager {
 					rate.setUserId(Integer.parseInt(token.nextToken()));
 					rate.setItemId(Integer.parseInt(token.nextToken()));
 					rate.setRatings(Integer.parseInt(token.nextToken()));
-					rate.setTimestap(Integer.parseInt(token.nextToken()));
+					rate.setTimestamp(Integer.parseInt(token.nextToken()));
 					return (rate);
 				}
 	 			
-	 			public Map<String, User> getUsr(InputStream movieStream)
+	 			public Map<Integer, User> getUsr(InputStream movieStream)
 						throws IOException {
 
-					Map<String, User> usrMap = new HashMap<>();
+					Map<Integer, User> usrMap = new HashMap<>();
 					List <String> lines = IOUtils.readLines(movieStream);
 
 					for (String line : lines) {
 						 User usr = parseUsr(line);
-						usrMap.put(Integer.toString(usr.getUserID()), usr);
-						System.out.println(usr);
+						usrMap.put((usr.getUserID()), usr);
+					//	System.out.println(usr);
 					}
 					return usrMap;
 		}					
@@ -91,16 +101,32 @@ public class MovieManager {
 
 			public static void main(String[] args) throws IOException {
 				MovieManager m = new MovieManager();
-				Map<String, Movie> movieMap = m.getMovies(m.getClass().getClassLoader().getResourceAsStream("movie.data"));
+				Map<Integer, Movie> movieMap = m.getMovies(m.getClass().getClassLoader().getResourceAsStream("movie.data"));
 				MovieManager rate = new MovieManager();
 				ArrayList<ratings> rateMap = rate.getRate(rate.getClass().getClassLoader().getResourceAsStream("ratings.data"));
 				MovieManager usr = new MovieManager();
-				Map<String, User> usrMap = usr.getUsr(usr.getClass().getClassLoader().getResourceAsStream("user.data"));
 				
-			
-			}
-			
-			
-		 		
+				Map<Integer, User> usrMap = usr.getUsr(usr.getClass().getClassLoader().getResourceAsStream("user.data"));
+				
+				 for(ratings ratingObj :rateMap ) {
+				   Movie movieObj = movieMap.get(ratingObj.getItemId());
+				   movieObj.setTotalUserCount(1);
+				   movieObj.setTotalRatings(ratingObj.getRatings());
+			 // System.out.println(movieObj.getTotalUserCount());
+			 // System.out.println(movieObj.getTotalRatings());
+				// System.out.println(movieObj);
+				 User userObj = usrMap.get(ratingObj.getUserId());
+				 userObj.setCount(1);
+				// System.out.println(userObj);
+				 }
+				 
+				// System.out.println("--------------------------------");
+				// System.out.println(movieMap);
+				
+				 MovieFreak Freak = new MovieFreak(movieMap, rateMap, usrMap);				 		
 		
 }
+
+			
+				
+			}
