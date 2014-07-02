@@ -1,5 +1,6 @@
 package com.hashedin;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Movie {
@@ -8,9 +9,29 @@ public class Movie {
 	String release_date;
 	String video_release_date;
 	String url;
-	int[] genre;
+	ArrayList<String>genre = new ArrayList<>();
 	int totalRatings;
 	int totalUserCount; 
+	float avg;
+	
+	public float getAvg() {
+		return avg;
+	}
+	
+	public int getCurrentRatings() {
+		return currentRatings;
+	}
+	public void setCurrentRatings(int currentRatings) {
+		this.currentRatings = currentRatings;
+	}
+	public void setGenre(ArrayList<String> genre) {
+		this.genre = genre;
+		
+	}
+	
+	public ArrayList<String> getGenre() {
+		return genre;
+	}
 	public int getTotalUserCount() {
 		return totalUserCount;
 	}
@@ -68,20 +89,19 @@ public class Movie {
 	public void setUrl(String url) {
 		this.url = url;
 	}
-	public int[] getGenre() {
-		return genre;
-	}
-	public void setGenre(int[] genre) {
-		this.genre = genre;
-	}
+	
 	@Override
 	public String toString() {
 		return "Movie [movie_id=" + movie_id + ", movie_name=" + movie_name
 				+ ", release_date=" + release_date + ", video_release_date="
 				+ video_release_date + ", url=" + url + ", genre="
-				+ Arrays.toString(genre) + ", totalRatings=" + totalRatings
+				 + ", totalRatings=" + totalRatings
 				+ ", totalUserCount=" + totalUserCount + ", rating=" + rating
 				+ "]";
+	}
+
+	public void setAvg(float avg) {
+		this.avg = avg;
 	}
 	
 	

@@ -23,7 +23,7 @@ public class MovieFreak {
 		
 		   List<Movie> movieList = new ArrayList<Movie>(movieMap.values());
 			List<User>userList = new ArrayList<User>(usrMap.values());
-		
+		     
 			 Movie mostWatched = new Movie();
 			 mostWatched = Collections.max(movieList, new Comparator<Movie>() {
 
@@ -51,5 +51,46 @@ public class MovieFreak {
 	   				System.out.println("mostActiveuser:"+u1.getUserID());
 	   					return u1;
 }
+	   	
+	   	
+
+
+		public Movie highestRatedGenre(Map<Integer, Movie> movieMap,
+				ArrayList<ratings> rateMap, Map<Integer, User> usrMap) {
+			
+			List<Movie> movieList = new ArrayList<Movie>(movieMap.values());
+			List<User> userList = new ArrayList<User>(usrMap.values());
+			//System.out.println(movieList);
+			for (Movie m : movieList ){
+				float avg = findAverage(m.getTotalRatings(),m.getTotalUserCount());
+					m.setAvg(avg);
+					//System.out.println(m.getAvg());
+					}
+			   
+		    Movie highestRated = Collections.max(movieList, new Comparator<Movie>() {
+			        @Override
+			        public int compare(Movie first,Movie second) {
+			            if (first.getAvg() > second.getAvg())
+			                return 1;
+			            else if (first.getAvg() < second.getAvg())
+			                return -1;
+			            return 0;
+			        }
+			    });
+		    	//System.out.println(highestRated.getAvg());
+				return highestRated; 
+	
+  
+	
+					
+			
+		}
+
+
+		public float findAverage(int totalRatings, int totalUserCount) {
+			
+			  return (float)totalRatings/(float)totalUserCount;
+			
+		}
 
 }

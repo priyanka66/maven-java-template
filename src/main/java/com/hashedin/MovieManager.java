@@ -37,11 +37,61 @@ public class MovieManager {
 	 			Movie parseMovie(String movieRecord) {
 					StringTokenizer token = new StringTokenizer(movieRecord, "|");
 					Movie m = new Movie();
+					ArrayList<String>genre = new ArrayList<>();
 					m.setMovie_id(Integer.parseInt(token.nextToken()));
 					m.setMovie_name(token.nextToken());
 					m.setRelease_date(token.nextToken());
 					m.setUrl(token.nextToken());
-				//	m.setGenre(Integer.parseInt(token.nextToken()));
+					int count =0;
+					while(token.hasMoreElements())
+					{
+						int tempGenre = Integer.parseInt(token.nextToken());
+						if(tempGenre ==1 && count<19){
+							switch(count) {
+							case 0 :  genre.add("unknown");
+								   	  break;
+							case 1 :  genre.add("action");
+						   	  break;
+							case 2 :  genre.add("adventure");
+						   	  break;
+							case 3 :  genre.add("animation");
+						   	  break;
+							case 4 :  genre.add("children's");
+						   	  break;
+							case 5 :  genre.add("comedy");
+						   	  break;
+							case 6 :  genre.add("crime");
+						   	  break;
+							case 7 :  genre.add("documentary");
+						   	  break;
+							case 8 :  genre.add("drama");
+						   	  break;
+						   	  case 9 :  genre.add("fantasy");
+						   	  break;
+						   	case 10 :  genre.add("film-noir");
+						   	  break;
+						   	case 11 :  genre.add("horror");
+						   	  break;
+						   	case 12 :  genre.add("musical");
+						   	  break;
+						   	case 13 :  genre.add("romance");
+						   	  break;
+						   	case 14 :  genre.add("sci-fi");
+						   	  break;
+						   	case 15 :  genre.add("thriller");
+						   	  break;
+						   	case 16 :  genre.add("war");
+						   	  break;
+						   	case 17 :  genre.add("western");
+						   	  break;
+						   	case 18 :  genre.add("unknown");
+						   	  break;
+						   	  default : 
+							}
+						}
+						count++;
+					}
+					m.setGenre(genre);
 					return (m);
 				}
 	 			
@@ -121,13 +171,17 @@ public class MovieManager {
 				 }
 				 
 				// System.out.println("--------------------------------");
-				// System.out.println(movieMap);
+				 System.out.println(movieMap.get(1).getGenre());
 				
 				 MovieFreak Freak = new MovieFreak(movieMap, rateMap, usrMap);				 		
 		        // System.out.println("Most Watched movie is :");
 		         Freak.MostWatchedMovie(movieMap,rateMap,usrMap);
 		         Freak.mostActiveuser(movieMap, rateMap, usrMap);
-}
+		        Movie higestRated= Freak.highestRatedGenre(movieMap,rateMap,usrMap);
+		        System.out.println("The highest rated movie is : ");
+		        System.out.println(higestRated.getMovie_name());
+		      //  System.out.println(higestRated.getAvg());
+			}
 
 			
 				
